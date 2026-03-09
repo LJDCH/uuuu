@@ -1,0 +1,32 @@
+name: Build Unsigned iOS App
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Build Xcode Project (No Code Sign)
+        run: |
+          xcodebuild clean build \
+            -project "aaa.xcodeproj" \
+            -scheme "aaa" \
+            -configuration Release \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Package to IPA
+        run: |
+          # xcodebuild 编译后生成的是 .app 文件夹，我们需要将其手动打包成 .ipa
+          mkdir -p Payload
+          mv build/Release-iphoneos/aaa.app Payload/
+          zip -r aaa_unsigned.ipa Payload
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Unsigned-IPA
+          path: aaa_unsigned.ipa
