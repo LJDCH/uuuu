@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-ios:
-    runs-on: macos-latest # 必须使用 macOS 才能运行 xcodebuild
+    runs-on: macos-13 # 必须使用 macOS 才能运行 xcodebuild
 
     steps:
       - name: Checkout Source Code
