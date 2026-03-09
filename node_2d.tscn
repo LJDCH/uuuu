@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dad7bc4523ujr"]
+
+[ext_resource type="Texture2D" uid="uid://ddta3g6mpqf85" path="res://桌面 (1).jpg" id="1_wtcfe"]
+
+[node name="Node2D" type="Node2D" unique_id=2069030346]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=940799754]
+position = Vector2(641, 365)
+texture = ExtResource("1_wtcfe")
+
+[node name="Button" type="Button" parent="." unique_id=1327949961]
+offset_left = 595.0
+offset_top = 326.0
+offset_right = 684.0
+offset_bottom = 389.0
+theme_override_font_sizes/font_size = 40
+text = "Test"
